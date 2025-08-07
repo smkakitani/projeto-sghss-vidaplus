@@ -8,4 +8,138 @@
 }
 
 
+/* Logo da empresa */
+.logo {
+  width: 97px;
+}
 
+.logo + p {
+  font-family: 'Krona One';
+  font-size: 1rem;
+  /* color: red; */
+}
+
+
+#painel {
+  background-color: var(--azul-escuro-1);
+  color: white;
+
+  width: 350px;
+  height: 400px;
+  padding: 1rem;
+  border-radius: 11px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+/* Seleção de usuário */
+button {
+  color: white;
+  text-transform: uppercase;
+  background-color: var(--azul-escuro-2);
+  cursor: pointer;
+
+  padding: 0.7rem;
+  border-radius: 9px;
+  border: 0;
+  width: 120px;
+
+  font-family: 'Roboto';
+  font-size: 0.8rem;
+
+  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+}
+
+.botao-usuario {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+
+.botao-usuario > button {
+  margin-top: 2rem;
+}
+
+.botao-usuario > p,
+#painel > form legend {
+  font-size: 0.9rem;
+  width: 100%;
+  padding: 0.8rem;
+}
+
+/* .botao-usuario > button {
+  color: white;
+  text-transform: uppercase;
+  background-color: var(--azul-escuro-2);
+  cursor: pointer;
+
+  padding: 0.9rem;
+  border-radius: 9px;
+  border: 0;
+  width: 120px;
+
+  font-family: 'Roboto';
+  font-size: 0.8rem;
+
+  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+} */
+
+#painel button:hover {
+  background-color: var(--azul-claro-1);
+}
+
+/* Margem para alinhar o texto */
+#painel > form,
+.botao-usuario {
+  margin-top: 25px;
+}
+
+
+/* Login após seleção de usuário */
+#painel > form > fieldset {
+  border: 0;
+  /* height: 70%; */
+  display: flex;
+  flex-direction: column;
+}
+
+#painel > form  {
+  width: 80%;
+}
+
+#painel > form > fieldset > div {
+  font-size: 0.9rem;
+
+  padding: 0.25rem;
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+#painel > form input {
+  font-family: inherit;
+  font-size: 1rem;
+
+  width: 100%;
+  border: 1px solid var(--azul-escuro-2);
+  border-radius: 4px;
+
+  padding: 0.25em 0.5em;
+}
+
+#painel > form > div {
+  margin-top: 1.25rem;
+
+  display: flex;
+  justify-content: space-around;
+}
+
+#painel > form > div button {
+  width: 100px;
+
+  
+}

@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Krona+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Krona+One&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
 /* CSS reset */
 *,
 *::before,
@@ -7,6 +10,23 @@
   padding: 0;
 }
 
+/* Main */
+:root {
+  --azul-escuro-1: #121B63;
+  --azul-escuro-2: #242E7D;
+  --azul-claro-1: #8189C5;
+  --azul-claro-2: #555FA7;
+
+  font-family: 'Roboto';
+}
+
+
 body {
-  background-color: #3A4492;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  place-items: center;
+
+  background: #3A4492;
+  background: linear-gradient(180deg,rgba(58, 68, 146, 1) 16%, rgba(18, 27, 99, 1) 110%);
 }
