@@ -1,11 +1,11 @@
-import { useState, useContext, createContext } from 'react'
+import { useState, /* useContext, createContext */ } from 'react'
 import './App.css'
-import AreaColaborador from './components/Colaborador'
 import AcessoUsuario from './components/Login'
+import AreaColaborador from './components/Colaborador'
+import AreaPaciente from './components/Paciente'
 
 
 import vidaPlusLogo from './assets/logo_vidaplus_.svg'
-
 
 
 function LogoVidaPlus () {
@@ -24,22 +24,31 @@ function LogoVidaPlus () {
 // Main
 function App() {
   const [userType, setUserType] = useState(''); // renderizar página paciente ou colaborador
+  const [userLoggedIn, setUserLoggedIn] = useState(false);
 
 
   function selecionaAreaUsuario (event) {
-    event.preventDefault();
+    event.preventDefault(); // previne de o navegador de dar load na página e voltar
 
-    console.log(event.target.className) // classe com o tipo de usuário
+    setUserType(event.target.className);
+    setUserLoggedIn(true);
+
+    console.log(event.target.className); // classe com o tipo de usuário
+  }
+
+  if (userType === 'colaborador') {
+    console.log('usuário é COLABORADOR');
+    return <AreaColaborador />
+  } else if (userType === 'paciente') {
+    console.log('usuário é PACIENTE');
+    return <AreaPaciente />
   }
 
   return (
     <>
-    {/* página paciente ou colab
-    isPaciente && pagPaciente */}
-      <AcessoUsuario 
-        definirAcesso={selecionaAreaUsuario}/>
+      {!userLoggedIn && <AcessoUsuario definirAcesso={selecionaAreaUsuario} />}
     </>    
-  )
+  );
 }
 
 export default App
