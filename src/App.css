@@ -8,13 +8,20 @@
 }
 
 
-/* Logo da empresa */
-.logo {
-  width: 97px;
+/* Buttons gerais */
+button {
+  color: white;
+  text-transform: uppercase;
+  background-color: var(--azul-escuro-2);
+  cursor: pointer;
+
+  font-family: 'Roboto';
+  font-size: 0.8rem;
+
+  padding: 0.7rem;
+  border: 0;
 }
 
-.logo + p {
-  font-family: 'Krona One';
-  font-size: 1rem;
-  /* color: red; */
-}
+/* :invalid {
+
+} */

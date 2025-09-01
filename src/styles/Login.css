@@ -14,15 +14,15 @@
 }
 
 /* Seleção de usuário */
-button {
-  color: white;
+#painel button {
+  /* color: white;
   text-transform: uppercase;
   background-color: var(--azul-escuro-2);
-  cursor: pointer;
+  cursor: pointer; */
 
   padding: 0.7rem;
   border-radius: 9px;
-  border: 0;
+  /* border: 0; */
   width: 120px;
 
   font-family: 'Roboto';
@@ -98,7 +98,7 @@ button {
   align-items: flex-start;
 }
 
-#painel > form input {
+/* #painel > form input {
   font-family: inherit;
   font-size: 1rem;
 
@@ -107,7 +107,7 @@ button {
   border-radius: 4px;
 
   padding: 0.25em 0.5em;
-}
+} */
 
 #painel > form > div {
   margin-top: 1.25rem;

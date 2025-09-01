@@ -1,0 +1,26 @@
+/* .pagina-colab {
+  display: grid;
+  grid-template-columns: minmax(280px, 1fr) 3fr;
+  grid-template-rows: 3fr 100px;
+} */
+
+/* .pagina-colab > nav {
+  background-color: var(--azul-escuro-1);
+  height: 100vh;
+} */
+
+/* .pagina-colab > nav > menu {
+  display: flex;
+  flex-direction: column;
+} */
+
+/* .pagina-colab > nav > menu li {
+  list-style-type: none;
+  color: white;
+} */
+
+/* .pagina-colab > nav > menu li:hover {
+  background-color: red;
+  cursor: pointer;
+} */
+

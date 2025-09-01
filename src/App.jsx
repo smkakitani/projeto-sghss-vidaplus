@@ -1,11 +1,11 @@
-import { useState, /* useContext, createContext */ } from 'react'
-import './App.css'
-import AcessoUsuario from './components/Login'
-import AreaColaborador from './components/Colaborador'
-import AreaPaciente from './components/Paciente'
+import { useState, /* useContext, createContext */ } from 'react';
+import './App.css';
+import AcessoUsuario from './components/Login';
+import { AreaColaboradorAdmin, AreaColaboradorProfSaude } from './components/Colaborador';
+import AreaPaciente from './components/Paciente';
+import { testUserAdmin, testUserProf } from './components/LocalData';
 
-
-import vidaPlusLogo from './assets/logo_vidaplus_.svg'
+import vidaPlusLogo from './assets/logo_vidaplus_.svg';
 
 
 function LogoVidaPlus () {
@@ -17,36 +17,90 @@ function LogoVidaPlus () {
   )
 }
 
-// Context para decidir o tipo de usuário, paciente ou colaborador
-// export const UserContext = createContext(null);
-
 
 // Main
 function App() {
-  const [userType, setUserType] = useState(''); // renderizar página paciente ou colaborador
-  const [userLoggedIn, setUserLoggedIn] = useState(false);
+  // const [userType, setUserType] = useState(''); // renderizar página paciente ou colaborador
+  // const [userLoggedIn, setUserLoggedIn] = useState(false);
+
+  const [logIn, setLogIn] = useState({
+    userType: '',
+    userSubType: '',
+    isLoggedIn: false,
+  });
+  const [testUser, setTestUser] = useState(testUserProf); // verificar o tipo de login, já que colaborador terá usuário admin e usuário profissional de saúde
 
 
-  function selecionaAreaUsuario (event) {
-    event.preventDefault(); // previne de o navegador de dar load na página e voltar
+  function selectAreaUsuario(event) {
+    // Após validar usuário e senha no Back-end
+    event.preventDefault();
+    // setUserType(event.target.className);
+    // setUserLoggedIn(true);
+    // console.log(event.target); // classe com o tipo de usuário
+    
+    let subType = '';
+    if (logIn.userType === 'colaborador') {
+      subType = testUser.loginType;
+    }
 
-    setUserType(event.target.className);
-    setUserLoggedIn(true);
-
-    console.log(event.target.className); // classe com o tipo de usuário
+    setLogIn({
+      ...logIn,
+      userSubType: subType,
+      isLoggedIn: true,
+    });
+    console.log(subType);    
   }
 
-  if (userType === 'colaborador') {
+  function handleUser(e) {
+    setLogIn({
+      ...logIn,
+      userType: e.target.value,
+    });
+  }
+
+  function handleLogin(e) {
+    setTestUser({
+      ...testUser,
+      [e.target.id]: e.target.value
+    });
+  }
+
+  /* if (userType === 'colaborador') {
     console.log('usuário é COLABORADOR');
     return <AreaColaborador />
   } else if (userType === 'paciente') {
     console.log('usuário é PACIENTE');
     return <AreaPaciente />
+  } */
+
+  function resetUser() {
+    setLogIn({
+      ...logIn,
+      userType: '', 
+      userSubType: '',
+      isLoggedIn: false,
+    })
   }
 
   return (
     <>
-      {!userLoggedIn && <AcessoUsuario definirAcesso={selecionaAreaUsuario} />}
+      {/* {userLoggedIn && (userType === 'colaborador') && <AreaColaboradorAdmin logOff={() => setUserLoggedIn(false)} />} */}
+      {/* {userLoggedIn && (userType === 'paciente') && <AreaPaciente logOff={() => setUserLoggedIn(false)} />} */}
+      {/* <AreaColaborador /> */}
+      {/* <AreaPaciente /> */}
+      {/* {!userLoggedIn && <AcessoUsuario definirAcesso={selecionaAreaUsuario} />} */}
+      {!logIn.isLoggedIn && 
+        <AcessoUsuario 
+          logIn={logIn}
+          handleUser={handleUser}
+          handleLogin={handleLogin}
+          backButton={() => resetUser()}
+          onSubmit={selectAreaUsuario} 
+        />
+      }
+      {logIn.isLoggedIn && (testUser.loginType === 'admin') && <AreaColaboradorAdmin logOff={() => resetUser()} />}
+      {logIn.isLoggedIn && (testUser.loginType === 'profissional') && <AreaColaboradorProfSaude logOff={() => resetUser()} />}
+      {logIn.isLoggedIn && (logIn.userType === 'paciente') && <AreaPaciente logOff={() => resetUser()} />}
     </>    
   );
 }

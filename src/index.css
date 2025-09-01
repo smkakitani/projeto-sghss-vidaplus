@@ -16,8 +16,13 @@
   --azul-escuro-2: #242E7D;
   --azul-claro-1: #8189C5;
   --azul-claro-2: #555FA7;
+  --azul-claro-background: #aeb3dc;
 
   font-family: 'Roboto';
+
+  --select-border: #777;
+  --select-focus: blue;
+  --select-arrow: var(--select-border);
 }
 
 
@@ -29,4 +34,19 @@ body {
 
   background: #3A4492;
   background: linear-gradient(180deg,rgba(58, 68, 146, 1) 16%, rgba(18, 27, 99, 1) 110%);
+}
+
+input {
+  font-family: 'Roboto';
+  font-size: 1rem;
+
+  width: 100%;
+  border: 1px solid var(--azul-escuro-2);
+  border-radius: 4px;
+
+  padding: 0.25em 0.5em;
+}
+
+input:focus {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }

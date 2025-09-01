@@ -1,34 +1,22 @@
 import { useState } from 'react'
+import { LogoVidaPlus } from './GeneralDashboard'
 
 import '../styles/Login.css'
 
-// Imagem
-import vidaPlusLogo from '../assets/logo_vidaplus_.svg'
 
+// const fakeUser = {
+//   usuario: 'miaau',
+//   senha: '666'
+// };
 
-// Logo da empresa
-function LogoVidaPlus () {
-    return (
-      <div id='vp-logo'>
-        <img className='logo' src={vidaPlusLogo} alt="logo de VidaPlus" />
-        <p>VidaPlus</p>
-      </div>
-    )
-}
-
-const fakeUser = {
-  usuario: 'miaau',
-  senha: '666'
-};
-
-function PainelSelecao ({ defineUsuario }) {
+function PainelSelecao ({ onClick }) {
   return (
     <div id='painel'>
       <LogoVidaPlus />
       <div className='botao-usuario'>
         <p>Acessar área como:</p>
-        <button type='button' className='usuario-paciente' onClick={defineUsuario}>Paciente</button>
-        <button type='button' className='usuario-colaborador' onClick={defineUsuario}>Colaborador</button>
+        <button value='paciente' className='usuario-paciente' onClick={onClick}>Paciente</button>
+        <button value='colaborador' className='usuario-colaborador' onClick={onClick}>Colaborador</button>
       </div>
     </div>
   );
@@ -38,24 +26,25 @@ function PainelLogin ({
   userOption, 
   backButton, 
   handleChange, 
-  definirAcesso }) {
+  onSubmit 
+}) {
   return (
     <div id="painel">
       <LogoVidaPlus />
-      <form action="#" onSubmit={definirAcesso} className={userOption}>
+      <form action="#" onSubmit={onSubmit} className={userOption}>
         <fieldset>
           <legend>Acessando área como {userOption}</legend>
           <div>
             <label htmlFor='usuario'>Usuário: </label>
             <input 
-            onChange={handleChange}
-            type='text' id='usuario' name='login' maxLength='32' placeholder=' ' />
+              onChange={handleChange}
+              type='text' id='usuario' name='login' maxLength='32' />
           </div>
           <div>
             <label htmlFor="senha">Senha: </label>
             <input 
-            onChange={handleChange}
-            type="password" id='senha' name='senha-usuario' minLength='8'/>
+              onChange={handleChange}
+              type="password" id='senha' name='senha-usuario' minLength='8'/>
           </div>
         </fieldset>
         <div>
@@ -67,47 +56,63 @@ function PainelLogin ({
   );
 }
 
-
-
 // Componente da área de acesso
-export default function AcessoUsuario ({ definirAcesso }) {
-  const [currentUser, setCurrentUser] = useState(null);
-  const [isSelected, setIsSelected] = useState(false);
-  const [userData, setUserData] = useState(fakeUser);
+export default function AcessoUsuario ({ 
+  /* definirAcesso,  */
+  logIn, 
+  handleUser, 
+  handleLogin,
+  backButton, 
+  onSubmit,
+ }) {
+  // const [currentUser, setCurrentUser] = useState('');
+  // const [isSelected, setIsSelected] = useState(false);
+  // const [userData, setUserData] = useState(fakeUser);
 
-  function defineUsuario (e) {
-    if (e.target.className === 'usuario-paciente') {
-      setCurrentUser('paciente');
-      setIsSelected(true);
-    } else if (e.target.className === 'usuario-colaborador') {
-      setCurrentUser('colaborador');
-      setIsSelected(true);
-    } 
-    // console.log(e.target);
-  }
 
-  function handleChange (event) {
-    // guardas dados digitados no input pelo usuário para passar pela validação que será feita pelo backend
-    setUserData({
-        ...userData,
-        [event.target.id]: event.target.value
-      });
-  }
+  // Definir o tipo de usuário - Paciente ou Colaborador
+  // function handleUser(e) {
+  //   // if (e.target.className === 'usuario-paciente') {
+  //   //   setCurrentUser('paciente');
+  //   //   setIsSelected(true);
+  //   // } else if (e.target.className === 'usuario-colaborador') {
+  //   //   setCurrentUser('colaborador');
+  //   //   setIsSelected(true);
+  //   // } 
+    
+  //   setCurrentUser(e.target.value);
+  //   setIsSelected(true);
+  //   console.log(e.target.value);
+  // }
 
-  function backSelection () {
-    setCurrentUser(null);
-    setIsSelected(false);
-  }
+  // Acessando...
+  // function handleChange (event) {
+  //   // dados digitados no input pelo usuário para passar pela validação que será feita pelo backend
+  //   setUserData({
+  //       ...userData,
+  //       [event.target.id]: event.target.value
+  //     });
+  // }
+
+  // function resetUser () {
+  //   setCurrentUser('');
+  //   setIsSelected(false);
+  // }
 
   return (
     <>
-      {isSelected ? <PainelLogin 
-      userOption={currentUser} 
-      handleChange={handleChange}
-      backButton={backSelection}
-      definirAcesso={definirAcesso}/> : <PainelSelecao 
-      defineUsuario={defineUsuario} 
-      />}
+      {/* {isSelected ? <PainelLogin userOption={currentUser} handleChange={handleChange} backButton={resetUser} onSubmit={definirAcesso}/> : <PainelSelecao onClick={handleUser} />} */}
+      {logIn.userType ? 
+        <PainelLogin 
+          userOption={logIn.userType} 
+          handleChange={handleLogin} 
+          backButton={backButton} 
+          onSubmit={onSubmit}
+        /> : <PainelSelecao 
+          onClick={handleUser} 
+        />
+      }
+
     </>
   );
 }
