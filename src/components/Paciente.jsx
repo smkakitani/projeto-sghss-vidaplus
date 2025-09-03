@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { MainGridDashboard, MenuTabList, ItemTab, MainContent } from './GeneralDashboard';
-import { menuContentPaciente, testeUsuario, brazilStates, inputDadosPessoais, inputInvalidMessage, prettifyString } from './LocalData';
+import { menuContentPaciente, testUserData, brazilStates, inputDadosPessoais, inputInvalidMessage, prettifyString } from './LocalData';
 
 // Custom hook de API ViaCep (free)
 import { /* useFetchCep, */ useCep } from "./Api";
@@ -119,7 +119,7 @@ function SelectState({ value, onChange, showRequired }) {
 
 function MeusDados() {
   const [isEditing, setIsEditing] = useState(false);
-  const [userData, setUserData] = useState(testeUsuario);
+  const [userData, setUserData] = useState(testUserData);
   const [inputValues, setInpuValues] = useState(userData);
   const [resetForm, setResetForm] = useState(0); // mudando a KEY de element para resetar FORM
   const [cepValue, setCepValue] = useState('38056673'); // input value separado para CEP para impedir de chamar o custom hook > useCep < toda vez que o input muda

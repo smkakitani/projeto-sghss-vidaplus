@@ -1,3 +1,18 @@
+// Menu icons para prof saude
+import DateRangeSharpIcon from '@mui/icons-material/DateRangeSharp';
+import DescriptionSharpIcon from '@mui/icons-material/DescriptionSharp';
+import ArticleSharpIcon from '@mui/icons-material/ArticleSharp';
+import GroupsSharpIcon from '@mui/icons-material/GroupsSharp';
+import LogoutSharpIcon from '@mui/icons-material/LogoutSharp';
+
+// Menu icons para admin
+import HomeSharpIcon from '@mui/icons-material/HomeSharp';
+import MonitorHeartSharpIcon from '@mui/icons-material/MonitorHeartSharp';
+import MedicalInformationSharpIcon from '@mui/icons-material/MedicalInformationSharp';
+import LocalPhoneSharpIcon from '@mui/icons-material/LocalPhoneSharp';
+
+
+
 /* Funções GERAIS */
 // Funções de formatação
 export function removeAccentPTBR(str) {
@@ -84,13 +99,13 @@ export function prettifyString(text, inputName) {
 
 /* Dados para COLABORADORES */
 export const testUserAdmin = {
-  usuario: 'miau_silva',
+  usuario: 'miau_silva@emial.com.br',
   senha: 'miaumiau',
   loginType: 'admin'
 };
 
 export const testUserProf = {
-  usuario: 'miau_silva',
+  usuario: 'miau_silva@emial.com.br',
   senha: 'miaumiau',
   loginType: 'profissional'
 };
@@ -104,6 +119,17 @@ export const menuContentAdmin = [
   'sair',
 ];
 
+export const menuIconAdmin = {
+  'home': <HomeSharpIcon />,
+  'pacientes': <GroupsSharpIcon />,
+  'atendimentos': <LocalPhoneSharpIcon />,
+  'profissionais-de-saúde': <MedicalInformationSharpIcon />,
+  'leitos-e-internações': <MonitorHeartSharpIcon />,
+  'sair': <LogoutSharpIcon />
+};
+
+
+
 export const menuContentProfSaude = [
   'agenda',
   'prontuários',
@@ -112,10 +138,22 @@ export const menuContentProfSaude = [
   'sair'
 ];
 
+export const menuIconProfSaude = {
+  'agenda': <DateRangeSharpIcon />,
+  'prontuários': <DescriptionSharpIcon />,
+  'receitas-digitais': <ArticleSharpIcon />,
+  'pacientes': <GroupsSharpIcon />,
+  'sair': <LogoutSharpIcon />
+};
+
 
 
 /* Dados para PACIENTES */
-
+export const testUserPaciente = {
+  usuario: '12312312312',
+  senha: 'miaumiau',
+  loginType: ''
+};
 
 export const menuContentPaciente = [
   'meus-dados',
@@ -125,7 +163,7 @@ export const menuContentPaciente = [
   'sair'
 ];
 
-export const testeUsuario = {
+export const testUserData = {
   nomeCompleto: 'Miau da Silva Sauro',
   telefone: '4192341234',
   email: 'meuemail@email.com',

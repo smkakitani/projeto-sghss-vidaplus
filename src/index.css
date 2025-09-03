@@ -50,3 +50,20 @@ input {
 input:focus {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
+
+/* mensagem para campo inválido */
+span[class='invalid-message']  {
+  color: rgb(214, 12, 12);
+  font-size: 0.8rem;
+  font-weight: bold;
+
+  justify-self: start;
+  text-align: start;
+  grid-column: 3;
+}
+
+/* campo invalidado */
+input[class='invalid-input'],
+/* .form-dados-pessoais > section > label >  */input:focus[class='invalid-input'] {
+  outline: 2px solid red;
+}

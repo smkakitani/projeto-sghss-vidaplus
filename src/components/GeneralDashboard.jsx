@@ -1,5 +1,6 @@
 // import { useState } from 'react';
 import { removeAccentPTBR } from './LocalData';
+import { Avatar } from '@mui/material';
 
 import '../styles/GeneralDashboard.css';
 
@@ -18,10 +19,11 @@ export function LogoVidaPlus() {
 
 
 // Painel de menu principal
-export function ItemTab({ tabId, handleMenuTab, classNameTab}) {
+export function ItemTab({ tabId, handleMenuTab, classNameTab, tabIcon }) {
   return (
     <li /* key={tabId} */ className={removeAccentPTBR(tabId)}>
       <button onClick={handleMenuTab} type='button' className={classNameTab}>
+        <span>{tabIcon}</span>
         {tabId.replaceAll("-", " ")}
       </button>
     </li>
@@ -80,9 +82,19 @@ export function MainContent({ tabId, className, children }) {
   );
 }
 
-// export function MenuSair() {
-  
-// }
+export function UserProfile({ userName='Miau', }) {
+  function getLetter(str) {
+    return str.charAt(0).toUpperCase()
+  }
+  return (
+    <section id='user-profile'>
+      <Avatar sx={{ width: 56, height: 56}}>
+        {getLetter(userName)}
+      </Avatar>
+      <p>Olá, <br /> {userName}</p>
+    </section>
+  );  
+}
 
 // Página geral determinando o grid
 export function MainGridDashboard({ 

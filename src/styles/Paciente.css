@@ -138,27 +138,12 @@ main > .meus-dados > div
   background-color: var(--azul-claro-background);
 }
 
-.invalid-input,
-.form-dados-pessoais > section > label > input:focus[class='invalid-input'] {
-  outline: 2px solid red;
-}
-
 input:read-only {
   background-color: rgb(169, 169, 169);
 }
 
 button:hover {
   background-color: var(--azul-claro-2);
-}
-
-.form-dados-pessoais > section > label > .invalid-message {
-  color: rgb(214, 12, 12);
-  font-size: 0.8rem;
-  font-weight: bold;
-
-  justify-self: start;
-  text-align: start;
-  grid-column: 3;
 }
 
 .form-dados-pessoais > button {

@@ -35,13 +35,7 @@ export function useCep(numCep) {
   const [error, setError] = useState(null);  
 
   useEffect(() => {
-
-    // CEP incompleto
-    console.log('numCep: ' + numCep);
-    /* if (numCep.length < 8) {
-      console.log('numCep ta curto ' + numCep);
-      return
-    } */
+    console.log('numCep: ' + numCep);   
 
     setLoading(true);
     // Cleanup function
@@ -87,3 +81,39 @@ export function useCep(numCep) {
   // console.log(cep)
   return { cep, error, loading };
 }
+
+// export function usePersonData() {
+//   const [personData, setPersonData] = useState(null);
+//   // const [loading, setLoading] = useState(false);
+//   // const [error, setError] = useState(null); 
+
+//   useEffect(() => {
+//     async function fetchPersonData() {
+//       try {
+//         const response = await fetch('https://randomuser.me/api/?results=10&nat=br&inc=name,email,phone', { mode: "cors"});
+//         console.log(response);
+        
+//         if (!response.ok) {
+//           throw new Error(response.status);
+//         }
+//         if (!ignore) {
+//           const person = await response.json();
+//           setPersonData(person[0]);
+//           console.log(person.results);
+//         } 
+
+//       } catch (error) {
+//         console.error('Error ): ', error);
+//         throw error;
+//       }
+
+//     }
+
+//     let ignore = false;
+//     fetchPersonData();
+
+//     return () => ignore = true;
+//   });
+
+//   return personData;
+// }

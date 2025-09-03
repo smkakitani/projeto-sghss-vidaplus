@@ -1,13 +1,9 @@
-import { useState } from 'react'
-import { LogoVidaPlus } from './GeneralDashboard'
+// import { useState } from 'react';
+import { LogoVidaPlus } from './GeneralDashboard';
 
 import '../styles/Login.css'
 
 
-// const fakeUser = {
-//   usuario: 'miaau',
-//   senha: '666'
-// };
 
 function PainelSelecao ({ onClick }) {
   return (
@@ -23,6 +19,8 @@ function PainelSelecao ({ onClick }) {
 }
 
 function PainelLogin ({ 
+  testUser,
+  isInvalid,
   userOption, 
   backButton, 
   handleChange, 
@@ -31,21 +29,26 @@ function PainelLogin ({
   return (
     <div id="painel">
       <LogoVidaPlus />
-      <form action="#" onSubmit={onSubmit} className={userOption}>
+      <form action="#" onSubmit={onSubmit} className={userOption} noValidate >
         <fieldset>
           <legend>Acessando área como {userOption}</legend>
           <div>
-            <label htmlFor='usuario'>Usuário: </label>
+            <label htmlFor='usuario'>Usuário{(userOption === 'paciente') ? '(digite seu CPF)' : '(digite seu e-mail)'}: </label>
             <input 
+              className={isInvalid ? 'invalid-input' : ''}
+              value={testUser.usuario}
               onChange={handleChange}
-              type='text' id='usuario' name='login' maxLength='32' />
+              type='text' id='usuario' name='usuario' maxLength={(userOption === 'paciente') ? '11' : '32'} required />
           </div>
           <div>
             <label htmlFor="senha">Senha: </label>
             <input 
+              className={isInvalid ? 'invalid-input' : ''}
+              value={testUser.senha}
               onChange={handleChange}
-              type="password" id='senha' name='senha-usuario' minLength='8'/>
+              type="password" id='senha' name='senha' minLength='8' required />
           </div>
+          {isInvalid && <span className="invalid-message">&#10071; usuário ou senha inválidos</span>}
         </fieldset>
         <div>
           <button type='submit' >Entrar</button>
@@ -58,52 +61,21 @@ function PainelLogin ({
 
 // Componente da área de acesso
 export default function AcessoUsuario ({ 
-  /* definirAcesso,  */
+  testUser,
+  isInvalid,
   logIn, 
   handleUser, 
   handleLogin,
   backButton, 
   onSubmit,
  }) {
-  // const [currentUser, setCurrentUser] = useState('');
-  // const [isSelected, setIsSelected] = useState(false);
-  // const [userData, setUserData] = useState(fakeUser);
-
-
-  // Definir o tipo de usuário - Paciente ou Colaborador
-  // function handleUser(e) {
-  //   // if (e.target.className === 'usuario-paciente') {
-  //   //   setCurrentUser('paciente');
-  //   //   setIsSelected(true);
-  //   // } else if (e.target.className === 'usuario-colaborador') {
-  //   //   setCurrentUser('colaborador');
-  //   //   setIsSelected(true);
-  //   // } 
-    
-  //   setCurrentUser(e.target.value);
-  //   setIsSelected(true);
-  //   console.log(e.target.value);
-  // }
-
-  // Acessando...
-  // function handleChange (event) {
-  //   // dados digitados no input pelo usuário para passar pela validação que será feita pelo backend
-  //   setUserData({
-  //       ...userData,
-  //       [event.target.id]: event.target.value
-  //     });
-  // }
-
-  // function resetUser () {
-  //   setCurrentUser('');
-  //   setIsSelected(false);
-  // }
-
+  
   return (
     <>
-      {/* {isSelected ? <PainelLogin userOption={currentUser} handleChange={handleChange} backButton={resetUser} onSubmit={definirAcesso}/> : <PainelSelecao onClick={handleUser} />} */}
       {logIn.userType ? 
         <PainelLogin 
+          testUser={testUser}
+          isInvalid={isInvalid}
           userOption={logIn.userType} 
           handleChange={handleLogin} 
           backButton={backButton} 
@@ -112,7 +84,6 @@ export default function AcessoUsuario ({
           onClick={handleUser} 
         />
       }
-
     </>
   );
 }
