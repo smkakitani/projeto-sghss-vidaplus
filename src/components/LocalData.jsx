@@ -11,6 +11,12 @@ import MonitorHeartSharpIcon from '@mui/icons-material/MonitorHeartSharp';
 import MedicalInformationSharpIcon from '@mui/icons-material/MedicalInformationSharp';
 import LocalPhoneSharpIcon from '@mui/icons-material/LocalPhoneSharp';
 
+// Menu icons para paciente
+import AccountBoxSharpIcon from '@mui/icons-material/AccountBoxSharp';
+import CalendarMonthSharpIcon from '@mui/icons-material/CalendarMonthSharp';
+import PlagiarismSharpIcon from '@mui/icons-material/PlagiarismSharp';
+import PendingActionsSharpIcon from '@mui/icons-material/PendingActionsSharp';
+
 
 
 /* Funções GERAIS */
@@ -37,11 +43,15 @@ export function capitalize(str) {
 }
 
 function formatTel(str) {
-  const ddd = str.slice(0, 2); // DDD
-  const part1 = str.slice(2, 7); // primeira parte após o DDD
-  const part2 = str.slice(7); // última parte
-
-  return `(${ddd})${part1}-${part2}`;
+  if (str.length === 10) {
+    // Formato: (xx)xxxx-xxxx
+    return `(${str.slice(0, 2)})${str.slice(2, 6)}-${str.slice(6)}`;
+  } else if (str.length === 11) {
+    // Formato: (xx)xxxxx-xxxx
+    return `(${str.slice(0, 2)})${str.slice(2, 7)}-${str.slice(7)}`;
+  } else {
+    return str;
+  }
 }
 
 function formatCpf(str) {
@@ -163,11 +173,19 @@ export const menuContentPaciente = [
   'sair'
 ];
 
+export const menuIconPaciente = {
+  'meus-dados': <AccountBoxSharpIcon />,
+  'consulta': <CalendarMonthSharpIcon />,
+  'exames': <PlagiarismSharpIcon />,
+  'histórico-clínico': <PendingActionsSharpIcon />,
+  'sair': <LogoutSharpIcon />
+};
+
 export const testUserData = {
   nomeCompleto: 'Miau da Silva Sauro',
   telefone: '4192341234',
   email: 'meuemail@email.com',
-  cpf: '00000000000',
+  cpf: '12312312312',
   dataNascimento: '1947-07-29',
   cep: '38056673',
   uf: 'MG',

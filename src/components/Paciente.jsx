@@ -1,15 +1,12 @@
 import { useEffect, useState } from 'react';
-import { MainGridDashboard, MenuTabList, ItemTab, MainContent } from './GeneralDashboard';
-import { menuContentPaciente, testUserData, brazilStates, inputDadosPessoais, inputInvalidMessage, prettifyString } from './LocalData';
+import { MainGridDashboard, MenuTabList, ItemTab, MainContent, UserProfile } from './GeneralDashboard';
+import { menuContentPaciente, menuIconPaciente, testUserData, brazilStates, inputDadosPessoais, inputInvalidMessage, prettifyString } from './LocalData';
 
 // Custom hook de API ViaCep (free)
-import { /* useFetchCep, */ useCep } from "./Api";
+import { useCep } from "./Api";
 
 import '../styles/Paciente.css';
 
-
-
-// Funções para formatar o menu de >MEUS DADOS<
 
 
 // Component de input
@@ -409,19 +406,13 @@ function Exames() {
 
 
 // Painel principal
-export default function AreaPaciente({ logOff }) {
+export default function AreaPaciente({ logOff, userName }) {
   /* const [activeIndex, setActiveIndex] = useState(0);
   const [currentTab, setCurrentTab] = useState({
     index: 0,
     name: 'meus dados'
   }); */
   const [selectedId, setSelectedId] = useState(menuContentPaciente[0]);
-
-  // function changeTab() {
-  //   setSelectedId(tab)
-  //   logOff();
-  // }
-
 
   /* function handleMenuItem(event) {
     const currentId = event.target.parentNode.id;
@@ -472,6 +463,7 @@ export default function AreaPaciente({ logOff }) {
           <ItemTab 
             key={tab}
             tabId={tab}
+            tabIcon={menuIconPaciente[tab]}
             handleMenuTab={() => {
               
               setSelectedId(tab);
@@ -479,16 +471,16 @@ export default function AreaPaciente({ logOff }) {
                 logOff();
               }
             }}
-            // handleMenuTab={changeTab}
             classNameTab={(selectedId === tab) ? 'button-menu current-tab' : 'button-menu'}
           />
         )}
       </MenuTabList>
+      <UserProfile userName={userName} />
       <MainContent
         tabId={selectedId}
         className={selectedId}
       >
-        {(selectedId === 'meus-dados') ? <MeusDados /> : 'outro menu...'}
+        {(selectedId === 'meus-dados') ? <MeusDados /> : selectedId}
 
         {/* {(selectedId === 'sair') ?  } */}
       </MainContent>
