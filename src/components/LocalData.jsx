@@ -320,9 +320,9 @@ export const inputDadosPessoais = [
     isRequired: true,
     currentDate: function() {
       const data = new Date();
-        const year = data.getFullYear();
-        const month = String(data.getMonth() + 1).padStart(2, '0'); // Mês começa do 0
-        const day = String(data.getDate()).padStart(2, '0');
+      const year = data.getFullYear();
+      const month = String(data.getMonth() + 1).padStart(2, '0'); // Mês começa do 0
+      const day = String(data.getDate()).padStart(2, '0');
 
       return `${year}-${month}-${day}`;
     }

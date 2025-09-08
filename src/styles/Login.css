@@ -1,11 +1,12 @@
 #painel {
   background-color: var(--azul-escuro-1);
   color: white;
+  box-shadow: 0px 10px 5px -3px rgba(0,0,0,0.1);
 
-  width: 350px;
-  height: 400px;
+  width: 375px;
+  height: 425px;
   padding: 1rem;
-  border-radius: 11px;
+  border-radius: 2rem;
 
   display: flex;
   flex-direction: column;
@@ -15,20 +16,23 @@
 
 /* Seleção de usuário */
 #painel button {
-  /* color: white;
-  text-transform: uppercase;
-  background-color: var(--azul-escuro-2);
-  cursor: pointer; */
-
   padding: 0.7rem;
   border-radius: 9px;
   /* border: 0; */
-  width: 120px;
+  width: 130px;
 
   font-family: 'Roboto';
-  font-size: 0.8rem;
+  font-size: 0.9rem;
 
   box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+}
+
+#painel button:hover {
+  /* background-color: #1b2894; */
+  /* background-color: #394AC6; */
+  background-color: var(--azul-claro-3);
+  border-top: 1px solid #A6B1E2;
+  /* outline: 2px solid var(--azul-claro-1); */
 }
 
 .botao-usuario {
@@ -48,27 +52,6 @@
   padding: 0.8rem;
 }
 
-/* .botao-usuario > button {
-  color: white;
-  text-transform: uppercase;
-  background-color: var(--azul-escuro-2);
-  cursor: pointer;
-
-  padding: 0.9rem;
-  border-radius: 9px;
-  border: 0;
-  width: 120px;
-
-  font-family: 'Roboto';
-  font-size: 0.8rem;
-
-  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
-} */
-
-#painel button:hover {
-  background-color: var(--azul-claro-1);
-}
-
 /* Margem para alinhar o texto */
 #painel > form,
 .botao-usuario {
@@ -85,7 +68,7 @@
 }
 
 #painel > form  {
-  width: 80%;
+  width: 85%;
 }
 
 #painel > form > fieldset > div {
@@ -96,6 +79,7 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  gap: 0.25rem;
 }
 
 /* #painel > form input {

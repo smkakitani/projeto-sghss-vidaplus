@@ -16,15 +16,14 @@
   background-color: #aeb3dc;
 
   display: grid;
-  grid-template-columns: minmax(250px, 1fr) 4fr;
-  grid-template-rows: 100px 3fr 100px;
+  grid-template-columns: minmax(250px, 300px /* 2fr */) 740px/* 4fr */;
+  grid-template-rows: 130px 3fr 10px;
   /* justify-items: stretch; */
-  align-items: center;
+  /* align-items: center; */
 }
 
 /* logo em main-grid */
 #main-grid > nav > #vp-logo {
-  /* padding-bottom: 50px; */
   padding: 1rem 0 2.5rem 0;
 }
 
@@ -36,29 +35,40 @@
   /* -webkit-box-shadow: 1px 10px 5px 1px rgba(0,0,0,0.75);
   -moz-box-shadow: 1px 10px 5px 1px rgba(0,0,0,0.75); */
 
-
   width: 100%;
-  height: 100px;
-
+  height: 100%;
 
   grid-row: 1;
   grid-column: 2;
+
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+
+  padding-right: 2rem;
+  gap: 1rem;
+}
+
+#user-profile > p {
+  text-align: start;
 }
 
 
 
-
+/* Menu */
 #main-grid > nav {
   background-color: var(--azul-escuro-1);
   height: 100vh;
 
   grid-row: 1 / -1;
-  align-content: center;
+  
+  /* align-content: start; */
 }
 
 #main-grid > nav > menu {
   display: flex;
   flex-direction: column;
+  /* align-items: stretch; */
   /* gap: 1rem; */
   /* padding: 0 1rem 0 1rem; */
 }
@@ -87,13 +97,19 @@
   align-items: center;
 
   font-size: 1rem;
+  text-align: start;
 
   background-color: var(--azul-escuro-1);
-  cursor: pointer;
+  /* cursor: pointer; */
   width: 100%;
   /* padding: 1rem 0 1rem 0; */
-  padding: 1rem 1.5rem;  
+  padding: 1rem 1.5rem;
+  border-radius: 0;
 }
+
+/* .button-menu {
+  text-align: start;
+} */
 
 #main-grid > nav > menu .button-menu > span {
   padding-right: 1rem;
@@ -103,16 +119,28 @@
   background-color: var(--azul-claro-1);
 }
 
-main {
-  /* background-color: var(--azul-claro-1); */
-  /* width: 100%; */
-
-  padding: 1rem;
-}
-
 /* !important usado para sobrescrever a cor base de TAB */
 .current-tab {
   background-color: var(--azul-claro-background) !important;
   color: var(--azul-escuro-1);
   font-weight: bolder;
+}
+
+main  {
+  /* background-color: var(--azul-claro-1); */
+  /* width: 100%; */
+
+  padding: 1rem;
+
+  /* transition: all 2s ease-in; */
+}
+
+main .tab-header {
+  height: 50px;
+}
+
+main h2:first-child {
+  font-size: 2rem;
+
+  text-transform: uppercase;
 }

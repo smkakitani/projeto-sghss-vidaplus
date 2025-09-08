@@ -103,7 +103,7 @@ export function AreaColaboradorProfSaude({ logOff, userName }) {
 }
 
 // Painel principal
-export function AreaColaboradorAdmin ({ logOff }) {
+export function AreaColaboradorAdmin ({ logOff, userName }) {
   // const [currentTab, setCurrentTab] = useState({
   //   index: 0,
   //   name: 'home'
@@ -155,6 +155,7 @@ export function AreaColaboradorAdmin ({ logOff }) {
           />
         )}
       </MenuTabList>
+      <UserProfile userName={userName} />
       <MainContent
         tabId={selectedId}
         className={removeAccentPTBR(selectedId)} 

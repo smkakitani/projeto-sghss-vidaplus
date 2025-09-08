@@ -26,7 +26,7 @@ function App() {
     userSubType: '',
     isLoggedIn: false,
   });
-  const [testUser, setTestUser] = useState(testUserPaciente); // verificar o tipo de login, já que colaborador terá usuário admin e usuário profissional de saúde
+  const [testUser, setTestUser] = useState(testUserAdmin); // verificar o tipo de login, já que colaborador terá usuário admin e usuário profissional de saúde
   const [isInvalid, setIsInvalid] = useState(false);
   const userFullName = testUserData.nomeCompleto;
 
@@ -88,7 +88,7 @@ function App() {
 
   return (
     <>
-      {!logIn.isLoggedIn && 
+      {/* {!logIn.isLoggedIn && 
         <AcessoUsuario 
           testUser={testUser}
           isInvalid={isInvalid}
@@ -101,11 +101,12 @@ function App() {
       }
       {logIn.isLoggedIn && (testUser.loginType === 'admin') && <AreaColaboradorAdmin userName={userFullName} logOff={() => resetUser()} />}
       {logIn.isLoggedIn && (testUser.loginType === 'profissional') && <AreaColaboradorProfSaude userName={userFullName} logOff={() => resetUser()} />}
-      {logIn.isLoggedIn && (logIn.userType === 'paciente') && <AreaPaciente userName={userFullName} logOff={() => resetUser()} />}
-      {/* <AreaColaboradorProfSaude 
-        userName={userFullName}
-        logOff={() => resetUser()} 
-      /> */}
+      {logIn.isLoggedIn && (logIn.userType === 'paciente') && <AreaPaciente userName={userFullName} logOff={() => resetUser()} />} */}
+
+      
+      <AreaPaciente userName={userFullName} logOff={() => resetUser()} />
+      {/* <AreaColaboradorProfSaude userName={userFullName} logOff={() => resetUser()} /> */}      
+      {/* <AreaColaboradorAdmin userName={userFullName} logOff={() => resetUser()} /> */}
     </>    
   );
 }

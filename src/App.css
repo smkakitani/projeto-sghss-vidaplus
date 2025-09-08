@@ -1,27 +1,9 @@
 #root {
-  max-width: 1280px;
+  /* max-width: 1280px; */
+  max-width: 1920px;
   text-align: center;
 
   /* display: grid;
   grid-template-rows: max-content 1fr;
   gap: 1.5rem; */
 }
-
-
-/* Buttons gerais */
-button {
-  color: white;
-  text-transform: uppercase;
-  background-color: var(--azul-escuro-2);
-  cursor: pointer;
-
-  font-family: 'Roboto';
-  font-size: 0.8rem;
-
-  padding: 0.7rem;
-  border: 0;
-}
-
-/* :invalid {
-
-} */

@@ -1,11 +1,13 @@
 // import { useState } from 'react';
 import { removeAccentPTBR } from './LocalData';
-import { Avatar } from '@mui/material';
 
 import '../styles/GeneralDashboard.css';
 
 import vidaPlusLogo from '../assets/logo_vidaplus_.svg';
 
+// MUI
+import { Avatar } from '@mui/material';
+import NotificationsSharpIcon from '@mui/icons-material/NotificationsSharp';
 
 // Logo da instituição 97 x 121 px
 export function LogoVidaPlus() {
@@ -88,6 +90,7 @@ export function UserProfile({ userName='Miau', }) {
   }
   return (
     <section id='user-profile'>
+      <NotificationsSharpIcon />
       <Avatar sx={{ width: 56, height: 56}}>
         {getLetter(userName)}
       </Avatar>
