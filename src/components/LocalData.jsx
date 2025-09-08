@@ -187,13 +187,13 @@ export const testUserData = {
   email: 'meuemail@email.com',
   cpf: '12312312312',
   dataNascimento: '1947-07-29',
-  cep: '38056673',
+  cep: '38056673', // CEP aleatório para demonstrar API funcionando
   uf: 'MG',
-  bairro: '',
-  cidade: '',
-  logradouro: '',
-  numPredial: '',
-  complemento: '',
+  bairro: 'Alfredo Freire II',
+  cidade: 'Uberaba',
+  logradouro: 'Rua Doutor Leo Derenusson',
+  numPredial: '111',
+  complemento: 'Ap 01',
 };
 
 export const brazilStates = [ 
@@ -390,9 +390,3 @@ export const inputDadosPessoais = [
     isRequired: false,
   }
 ];
-
-// const reg = new RegExp("[a-zA-ZáéíóúàâêôãõüçÁÉÍÓÚÀÂÊÔÃÕÜÇ\s-]{1,32}");
-// const reg2 = new RegExp("(?:([1-9]{2})?)(\d{4,5})(\d{4})");
-
-// console.log(inputDadosPessoais[0].pattern);
-// console.log(reg2);

@@ -3,10 +3,8 @@ import { MainGridDashboard, MenuTabList, ItemTab, MainContent, UserProfile } fro
 import { menuContentPaciente, menuIconPaciente, testUserData, brazilStates, inputDadosPessoais, inputInvalidMessage, prettifyString } from './LocalData';
 import '../styles/Paciente.css';
 
-// Custom hook de API ViaCep (free)
+// Custom hook de API para buscar CEP
 import { useCep } from "./Api";
-
-
 
 // MUI
 import AlarmIcon from '@mui/icons-material/Alarm';
@@ -19,8 +17,7 @@ import { FormControl, FormControlLabel, FormLabel, RadioGroup, Radio } from '@mu
 
 
 
-
-// Component de input
+// Aba - Meus Dados
 function InputDados({ 
   type,
   inputName,
@@ -42,19 +39,15 @@ function InputDados({
 
   function handleBlur(e) {
     const ele = e.target;
-    // const inputValid = ele.reportValidity();
     
     if (ele.validity.valid) {
       setIsInvalid(false);
       setErrorMessage('');
 
-      console.log(ele.name + ' válido');
+      // console.log(ele.name + ' válido');
       if (ele.name === 'cep') {
-        console.log('cade meu ceeeeeeeeeeeeeep');
         handleCep(ele.value);
-        // return
       }
-      // handleCep(ele.value);
     } else if (!ele.validity.valid) {
       setIsInvalid(true);
       const inputMessageType = inputInvalidMessage[ele.name];
@@ -62,21 +55,19 @@ function InputDados({
       if (ele.validity.patternMismatch && !ele.validity.tooShort) {
         setErrorMessage(inputMessageType.pattern);
 
-        console.log('pattern errado');
+        // console.log('pattern errado');
       } else if (ele.validity.valueMissing) {
         setErrorMessage(inputMessageType.missing);
 
-        console.log('campo vazio');
+        // console.log('campo vazio');
       } else if (ele.validity.tooShort) {
         setErrorMessage(inputMessageType.short);
 
-        console.log('caracter faltando');
+        // console.log('caracter faltando');
       }
     }
-    // console.log(ele.name);
-    // handleCEP(e);
   }
-  // console.log(minLength);
+
   return (
     <>
       <input
@@ -106,7 +97,7 @@ function InputDados({
 function SelectState({ value, onChange, showRequired }) {
   return (
     <>
-      <label /* htmlFor="estado-select" */><span>Estado:
+      <label><span>Estado:
       {showRequired &&  <strong><span aria-label="required">*</span></strong>}
       </span>
       <select 
@@ -117,7 +108,7 @@ function SelectState({ value, onChange, showRequired }) {
         onChange={onChange}
       >
         <option value="">Selecione seu Estado</option>
-        {brazilStates.map((name, index) => <option key={index} value={name.uf/* .toLowerCase() */}>{name.nome}</option>
+        {brazilStates.map((name, index) => <option key={index} value={name.uf}>{name.nome}</option>
         )}
       </select>
       </label>
@@ -142,6 +133,7 @@ function AbaMeusDados() {
   
 
   useEffect(() => {
+    // necessário usar cleanup function...?
     if (cep) {
       // sincronizar Estados com CEP
       setSelectedState(cep.state);
@@ -152,10 +144,13 @@ function AbaMeusDados() {
           uf: cep.state,
           cidade: cep.city,
           bairro: cep.neighborhood,
-          logradouro: cep.street
+          logradouro: cep.street,
+          numPredial: '',
+          complemento: '',
         }}
       );
     }
+    
   }, [cep]);
 
   function handleForm(e) {
@@ -299,7 +294,7 @@ function AbaMeusDados() {
 
 
 
-// ABA - Consulta
+// Aba - Consulta
 function DateTimePanel({ handleAccept }) {
   const inputRef = React.createRef();
 
@@ -483,57 +478,28 @@ function AbaConsulta() {
 
 
 
+// Aba - Exames
+function AbaExames() {
+  return (
+    <p>Exames</p>
+  );
+}
+
+
+
+// Aba - Histórico Clínico
+function AbaHistoricoClinico() {
+  return (
+    <p>Histórico Clínico</p>
+  );
+}
+
+
+
 // Painel principal
 export default function AreaPaciente({ logOff, userName }) {
-  /* const [activeIndex, setActiveIndex] = useState(0);
-  const [currentTab, setCurrentTab] = useState({
-    index: 0,
-    name: 'meus dados'
-  }); */
-  const [selectedId, setSelectedId] = useState(menuContentPaciente[1]); // mudando index muda ABA padrão
+  const [selectedId, setSelectedId] = useState(menuContentPaciente[0]); // mudando index muda a ABA padrão
 
-  /* function handleMenuItem(event) {
-    const currentId = event.target.parentNode.id;
-    const currentName = menuContentPaciente.at(currentId);
-
-    setCurrentTab({
-      index: event.target.parentNode.id,
-      name: currentName
-    });
-    setActiveIndex(currentId);
-    
-    console.log(event.target.parentNode.id, currentName);
-    console.log('atual index tab: ' + typeof parseInt(currentId));
-  } */
-
-
-  // talvez precise "guardar" os components com hide para reter os dados de usuário em dev
-  // return (
-  //   <MainGridDashboard pageName={'pagina-paciente'}>
-  //     <MenuTab 
-  //       onClick={handleMenuItem} 
-  //       menuNames={menuContentPaciente}
-  //       setClassName={}/>
-  //     <MainContent keyTab={currentTab.index} nameTab={currentTab.name.replace(" ", "-")}>
-  //       {/* <MeusDados /> */}
-  //       {/* arrumar class do div aparecendo com espaçamento... */}
-  //       {currentTab.name === 'meus dados' && <MeusDados />}
-  //       {/* {currentTab.name === 'exames' && <Exames />} */}
-  //     </MainContent>
-  //   </MainGridDashboard>
-  // );
- /*  return (
-    <MainGridDashboard 
-      menuTabs={menuContentPaciente}
-      pageName='pagina-paciente'
-      handleMenuList={() => setSelectedId(tabName)} 
-    >
-      {<MeusDados />}
-      <MainContent >
-        <MeusDados />
-      </MainContent>
-    </MainGridDashboard>
-  ); */
   return (
     <MainGridDashboard pageName={'pagina-paciente'}>
       <MenuTabList>
@@ -558,10 +524,10 @@ export default function AreaPaciente({ logOff, userName }) {
         tabId={selectedId}
         className={selectedId}
       >
-        {(selectedId === 'meus-dados') ? <AbaMeusDados /> : ''}
+        {(selectedId === 'meus-dados') && <AbaMeusDados />}
         {(selectedId === 'consulta') && <AbaConsulta />}
-
-        {/* {(selectedId === 'sair') ?  } */}
+        {(selectedId === 'exames') && <AbaExames />}
+        {(selectedId === 'histórico-clínico') && <AbaHistoricoClinico />}
       </MainContent>
     </MainGridDashboard>
   );
