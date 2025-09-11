@@ -317,21 +317,15 @@ function DateTimePanel({ handleAccept }) {
 }
 
 function CardConsulta() {
-  let size = 160;
-  const cardStyle = {
-    width: size * 2,
-    height: size,
-  }
-
   const cardTest = {
-    dataHora: '04/09/2025 - 09:00h',
+    dataHora: '13/10/2025 09:00h',
     profissional: 'Dr. Miado',
     especialidade: 'Gastrologista',
     modalidade: 'presencial'
   }
 
   return (
-    <div className='card-consulta' style={cardStyle}>
+    <div className='card-consulta'>
       <p><AlarmIcon />Próxima consulta</p>
       <span>
         <hr />
@@ -339,6 +333,10 @@ function CardConsulta() {
       <p>{cardTest.dataHora}</p>
       <p>{cardTest.profissional} | {cardTest.especialidade}</p>
       <p>Modalidade {cardTest.modalidade}</p>
+      <div>
+        <button disabled={true}>Teleconsulta</button>
+        <button>Cancelar</button>
+      </div>
     </div>
   );
 }

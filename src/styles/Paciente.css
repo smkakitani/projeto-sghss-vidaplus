@@ -165,7 +165,9 @@ option:focus {
   border: 1px solid var(--azul-claro-1);
   border-top: 5px solid var(--azul-escuro-2);
   border-radius: 0.3rem;
-  padding: 0.5rem;  
+  padding: 0.5rem;
+
+  max-width: 330px;
 
   display: flex;
   flex-direction: column;
@@ -190,6 +192,13 @@ option:focus {
   text-align: start;
   color: var(--azul-escuro-2);
 }
+
+.card-consulta > div:last-of-type {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+/* .card-consulta > div:last-of-type > button */
 
 /* agendar nova consulta */
 .consulta > div:nth-of-type(3) > button {
@@ -311,5 +320,6 @@ div.nova-consulta > div:first-of-type label span {
 
   .card-consulta {
     justify-self: center;
+    min-width: 70%;
   }
 }
