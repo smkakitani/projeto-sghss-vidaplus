@@ -2,9 +2,10 @@
   background-color: var(--azul-escuro-1);
   color: white;
   box-shadow: 0px 10px 5px -3px rgba(0,0,0,0.1);
+  align-self: center;
 
   width: 375px;
-  height: 425px;
+  min-height: 425px;
   padding: 1rem;
   border-radius: 2rem;
 
@@ -18,7 +19,6 @@
 #painel button {
   padding: 0.7rem;
   border-radius: 9px;
-  /* border: 0; */
   width: 130px;
 
   font-family: 'Roboto';
@@ -28,11 +28,8 @@
 }
 
 #painel button:hover {
-  /* background-color: #1b2894; */
-  /* background-color: #394AC6; */
   background-color: var(--azul-claro-3);
   border-top: 1px solid #A6B1E2;
-  /* outline: 2px solid var(--azul-claro-1); */
 }
 
 .botao-usuario {
@@ -62,7 +59,7 @@
 /* Login após seleção de usuário */
 #painel > form > fieldset {
   border: 0;
-  /* height: 70%; */
+
   display: flex;
   flex-direction: column;
 }
@@ -82,17 +79,6 @@
   gap: 0.25rem;
 }
 
-/* #painel > form input {
-  font-family: inherit;
-  font-size: 1rem;
-
-  width: 100%;
-  border: 1px solid var(--azul-escuro-2);
-  border-radius: 4px;
-
-  padding: 0.25em 0.5em;
-} */
-
 #painel > form > div {
   margin-top: 1.25rem;
 
@@ -102,4 +88,13 @@
 
 #painel > form > div button {
   width: 100px;
+}
+
+
+
+/* MOBILE */
+@media (max-width: 850px) {
+  #painel {
+    margin-top: 10vh;
+  }
 }

@@ -32,7 +32,6 @@ function InputDados({
   maxValue,
   inputMode,
   readOnly,
-  /* onInvalid */
  }) {
   const [isInvalid, setIsInvalid] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
@@ -133,7 +132,6 @@ function AbaMeusDados() {
   
 
   useEffect(() => {
-    // necessário usar cleanup function...?
     if (cep) {
       // sincronizar Estados com CEP
       setSelectedState(cep.state);
@@ -150,7 +148,6 @@ function AbaMeusDados() {
         }}
       );
     }
-    
   }, [cep]);
 
   function handleForm(e) {
@@ -166,7 +163,7 @@ function AbaMeusDados() {
       const formJson = Object.fromEntries(formData.entries());
 
       // usa input atual para editar os dados do usuário
-      setUserData(inputValues);
+      setUserData(formJson);
       setIsEditing(false);
       // console.log(formJson);
     } else {
@@ -233,7 +230,7 @@ function AbaMeusDados() {
           isRequired={item.isRequired}
           maxValue={(typeof item.currentDate === 'function') ? item.currentDate() : undefined}
           inputMode={item.inputMode}
-          readOnly={loading}
+          readOnly={item.isReadOnly}
         />
       ) : ( <span>{prettifyString(userData[item.name], item.name)}</span> )}
     </label>
@@ -296,6 +293,7 @@ function AbaMeusDados() {
 
 // Aba - Consulta
 function DateTimePanel({ handleAccept }) {
+  // Para ter acesso ao DOM
   const inputRef = React.createRef();
 
   return (
@@ -320,7 +318,6 @@ function DateTimePanel({ handleAccept }) {
 
 function CardConsulta() {
   let size = 160;
-
   const cardStyle = {
     width: size * 2,
     height: size,
@@ -332,7 +329,6 @@ function CardConsulta() {
     especialidade: 'Gastrologista',
     modalidade: 'presencial'
   }
-
 
   return (
     <div className='card-consulta' style={cardStyle}>
@@ -353,6 +349,7 @@ function AgendarConsulta({
   handleAgendar,
   isEspec
 }) {
+
   function handleChange(e) {
     const hasCurrent = Object.hasOwn(e, 'current');
 
@@ -368,7 +365,7 @@ function AgendarConsulta({
       <h3>Agendar nova consulta</h3>
       <hr />
       <div>
-        <label><span>Especialidade</span>
+        <label><span>Especialidade:</span>
           <select
             name="especialidade"
             id="especialidade-select"
@@ -426,9 +423,6 @@ function AbaConsulta() {
   });
 
   function handleValues(e) {
-    console.log(e.name, e.value);
-    // const ele = e.currentTarget;
-
     // lista de médicos depende da especialidade
     if (e.name === 'especialidade') {
       if (e.value) {
@@ -442,12 +436,10 @@ function AbaConsulta() {
       ...appointmentValues,
       [e.name]: e.value
     });
-    console.log(appointmentValues);
   }
 
-  function handleAgendar(e) {
-    // console.log(e.target.value);
-    // console.log(appointmentValues);
+  function handleAgendar() {
+    // Armazenar dados de agendamento no back-end
     setIsActive(false);
   }
 
@@ -458,18 +450,20 @@ function AbaConsulta() {
       </div>
       <hr />
       <div>
-        <CardConsulta />
-      </div>
-      <div>
-        <button onClick={() => {
-          setIsActive(!isActive);
-        }}>Nova consulta</button>
-        {isActive && <AgendarConsulta 
-          appointmentValues={appointmentValues}
-          handleValues={handleValues}
-          handleAgendar={handleAgendar}
-          isEspec={isEspec}
-        />}
+        <div>
+          <CardConsulta />
+        </div>
+        <div>
+          <button onClick={() => {
+            setIsActive(!isActive);
+          }}>Nova consulta</button>
+          {isActive && <AgendarConsulta
+            appointmentValues={appointmentValues}
+            handleValues={handleValues}
+            handleAgendar={handleAgendar}
+            isEspec={isEspec}
+          />}
+        </div>
       </div>
     </>
     
@@ -481,7 +475,12 @@ function AbaConsulta() {
 // Aba - Exames
 function AbaExames() {
   return (
-    <p>Exames</p>
+    <>
+      <div className="tab-header">
+        <h2>Exames</h2>
+      </div>
+      <hr />
+    </>
   );
 }
 
@@ -490,7 +489,12 @@ function AbaExames() {
 // Aba - Histórico Clínico
 function AbaHistoricoClinico() {
   return (
-    <p>Histórico Clínico</p>
+    <>
+      <div className="tab-header">
+        <h2>Histórico Clínico</h2>
+      </div>
+      <hr />
+    </>
   );
 }
 

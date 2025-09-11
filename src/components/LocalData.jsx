@@ -308,7 +308,8 @@ export const inputDadosPessoais = [
     maxLength: 11,
     minLength: 11,
     isRequired: true,
-    inputMode: 'numeric'
+    inputMode: 'numeric',
+    isReadOnly: true
   }, {
     id: 4,
     type: 'date',

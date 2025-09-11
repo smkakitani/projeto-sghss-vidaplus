@@ -5,18 +5,6 @@ import { AreaColaboradorAdmin, AreaColaboradorProfSaude } from './components/Col
 import AreaPaciente from './components/Paciente';
 import { testUserAdmin, testUserProf, testUserData, testUserPaciente } from './components/LocalData';
 
-// import vidaPlusLogo from './assets/logo_vidaplus_.svg';
-
-
-// function LogoVidaPlus () {
-//   return (
-//     <div id='vp-logo'>
-//       <img className='logo' src={vidaPlusLogo} alt="logo de VidaPlus" />
-//       <p>VidaPlus</p>
-//     </div>
-//   )
-// }
-
 
 
 // Main
@@ -41,17 +29,28 @@ function App() {
     if (logIn.userType === 'colaborador') {
       subType = testUser.loginType;
     } 
-    
-    if ((formJson.usuario === 'miau_silva@emial.com.br' || formJson.usuario === '12312312312') && formJson.senha === 'miaumiau') {
+
+    if (formJson.usuario === 'miau_silva@emial.com.br' && formJson.senha === 'miaumiau' && logIn.userType === 'colaborador') {
       // retirar mensagem de campo inválido
       setIsInvalid(false);
 
-      // prosseguir para o dashboard de acordo com o tipo de usuário
+      // prosseguir para o dashboard de acordo com o tipo de usuário 
       setLogIn({
         ...logIn,
         userSubType: subType,
         isLoggedIn: true,
       });
+
+    } else if (formJson.usuario === '12312312312' && formJson.senha === 'miaumiau' && logIn.userType === 'paciente') {
+      // retirar mensagem de campo inválido
+      setIsInvalid(false);
+
+      // prosseguir para o dashboard de usuário Paciente
+      setLogIn({
+        ...logIn,
+        isLoggedIn: true,
+      });
+
     } else {
       // irá mostrar mensagem de campo inválido
       setIsInvalid(true);

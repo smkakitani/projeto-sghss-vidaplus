@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { MainGridDashboard, MenuTabList, ItemTab, MainContent, UserProfile } from './GeneralDashboard';
 import { menuContentAdmin, menuContentProfSaude, removeAccentPTBR, menuIconProfSaude, menuIconAdmin } from './LocalData';
 
-import '../styles/Colaborador.css'
+import '../styles/Colaborador.css';
 
 
 // PROFISSIONAL DA SAÚDE

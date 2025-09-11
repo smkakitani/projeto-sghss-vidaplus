@@ -16,10 +16,8 @@
   background-color: #aeb3dc;
 
   display: grid;
-  grid-template-columns: minmax(250px, 300px /* 2fr */) 740px/* 4fr */;
-  grid-template-rows: 130px 3fr 10px;
-  /* justify-items: stretch; */
-  /* align-items: center; */
+  grid-template-columns: minmax(250px, 1fr) 3fr;
+  grid-template-rows: minmax(auto, 130px) 1fr;
 }
 
 /* logo em main-grid */
@@ -36,7 +34,6 @@
   -moz-box-shadow: 1px 10px 5px 1px rgba(0,0,0,0.75); */
 
   width: 100%;
-  height: 100%;
 
   grid-row: 1;
   grid-column: 2;
@@ -45,7 +42,7 @@
   justify-content: flex-end;
   align-items: center;
 
-  padding-right: 2rem;
+  padding: 1rem 2rem 1rem 0;
   gap: 1rem;
 }
 
@@ -58,9 +55,10 @@
 /* Menu */
 #main-grid > nav {
   background-color: var(--azul-escuro-1);
-  height: 100vh;
+  min-height: 100%;
 
-  grid-row: 1 / -1;
+  grid-row: 1 / 3;
+  grid-column: 1 / 2;
 }
 
 #main-grid > nav > menu {
@@ -80,9 +78,8 @@
   text-align: start;
 
   background-color: var(--azul-escuro-1);
-  /* cursor: pointer; */
   width: 100%;
-  /* padding: 1rem 0 1rem 0; */
+
   padding: 1rem 1.5rem;
   border-radius: 0;
 }
@@ -104,14 +101,78 @@
 
 main  {
   padding: 1rem;
+
+  grid-column: 2;
+  grid-row: 2;
 }
 
 main .tab-header {
-  height: 50px;
+  max-height: 50px;
 }
 
 main h2:first-child {
-  font-size: 2rem;
-
+  color: var(--azul-escuro-1);
+  font-size: 1.5rem;
   text-transform: uppercase;
+}
+
+
+/* MOBILE */
+@media (max-width: 850px) {
+  #main-grid {
+    grid-template-columns:  minmax(412px, auto) ;
+    grid-template-rows: max-content max-content auto;
+  }
+
+  #main-grid > nav {
+    overflow-x: auto;
+    min-height: fit-content;
+    min-width: 100%;
+
+    grid-row: 1 / 2;
+  }
+
+  #main-grid > nav > #vp-logo {
+    padding: 0.5rem 0 1rem 0;
+  }
+
+  #user-profile {
+    box-shadow: none;
+
+    grid-row: 2;
+    grid-column: 1 / 2;
+  }
+
+  #main-grid > nav > menu {
+    flex-direction: row;
+  }
+
+  #main-grid > nav > menu li {
+    flex: auto;
+  }
+
+  /* esconder texto do menu */
+  #main-grid > nav > menu > li > .button-menu > .hidden-text {
+    text-indent: -9999px;
+    /* overflow: hidden; */
+    white-space: nowrap;
+  }
+
+  #main-grid > nav > menu .button-menu {
+    justify-content: center;
+  }
+
+  #main-grid > nav > menu .button-menu > span {
+    padding: 0;
+  }
+
+  main {
+    padding: 0.75rem;
+    overflow-x: auto;
+
+    grid-row: 3;
+    grid-column: 1 / 2;
+  }
+
+
 }

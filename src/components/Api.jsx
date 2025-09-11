@@ -9,7 +9,7 @@ export function useCep(numCep) {
   const [error, setError] = useState(null);  
 
   useEffect(() => {
-    console.log('numCep: ' + numCep);   
+    // console.log('numCep: ' + numCep);
 
     setLoading(true);
     // Cleanup function
@@ -19,7 +19,6 @@ export function useCep(numCep) {
 
     fetch("https://brasilapi.com.br/api/cep/v2/" + numCep, { mode: "cors"})
       .then((response) => {
-        console.log('first response from API: ', response);
         if (!response.ok) {
           throw new Error(response.status);
         }
@@ -34,15 +33,17 @@ export function useCep(numCep) {
       })
       .catch((error) => {
         if (error.message === '404') {
-          console.log('error é um string');
-          setError('CEP não encontrado. Verifique o número digitado.')
+          setError('CEP não encontrado. Verifique o número digitado.');
+        } else if (error.message === '400') {
+          setError('CEP inválido.');
+        } else if (error.message === '500') {
+          setError('Erro interno.')
         } else {
-          setError('Tente novamente.');
+          setError('Tente novamente mais tarde.');
         }
-        // setError(error);
         // console.log('error no catch:', error.message);
         // console.error(error.name);
-        console.error(error.message);
+        // console.error(error.message);
       })
       .finally(() => setLoading(false));
 
