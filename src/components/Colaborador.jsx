@@ -7,18 +7,9 @@ import '../styles/Colaborador.css';
 
 // PROFISSIONAL DA SAÚDE
 // Aba - Agenda
-function AbaAgenda() {
+function AbaMinhaAgenda() {
   return (
-    <p>Agenda</p>
-  );
-}
-
-
-
-// Aba - Prontuários
-function AbaProntuarios() {
-  return (
-    <p>Prontuários</p>
+    <h2>Minha Agenda</h2>
   );
 }
 
@@ -27,7 +18,7 @@ function AbaProntuarios() {
 // Aba - Receitas Digitais
 function AbaReceitasDigitais() {
   return (
-    <p>Receitas Digitais</p>
+    <h2>Receitas Digitais</h2>
   );
 }
 
@@ -36,7 +27,7 @@ function AbaReceitasDigitais() {
 // Aba - Pacientes
 function AbaPacientes() {
   return  (
-    <p>Pacientes</p>
+    <h2>Pacientes</h2>
   )
 }
 
@@ -69,7 +60,7 @@ export function AreaColaboradorProfSaude({ logOff, userName }) {
         tabId={selectedId}
         className={removeAccentPTBR(selectedId)} 
       >
-        {(selectedId === 'agenda') && <AbaAgenda />}
+        {(selectedId === 'minha-agenda') && <AbaMinhaAgenda />}
         {(selectedId === 'prontuários') && <AbaProntuarios />}
         {(selectedId === 'receitas-digitais') && <AbaReceitasDigitais />}
         {(selectedId === 'pacientes') && <AbaPacientes />}        
@@ -84,7 +75,7 @@ export function AreaColaboradorProfSaude({ logOff, userName }) {
 // Aba - Home
 function AbaHome() {
   return (
-    <p>Home</p>
+    <h2>Home</h2>
   );
 }
 
@@ -93,25 +84,25 @@ function AbaHome() {
 // Aba - Pacientes
 function AbaPacientesAdmin() {
   return (
-    <p>Pacientes Admin</p>
+    <h2>Cadastrar Pacientes</h2>
   );
 }
 
 
 
 // Aba - Atendimentos
-function AbaAtendimentos() {
+function AbaRelatorios() {
   return (
-    <p>Atendimentos</p>
+    <h2>Atendimentos</h2>
   );
 }
 
 
 
 // Aba - Profissionais de Saúde
-function AbaProfSaude() {
+function AbaGestapProf() {
   return (
-    <p>Profissionais de Saúde</p>
+    <h2>Gestão de Profissionais</h2>
   );
 }
 
@@ -120,7 +111,25 @@ function AbaProfSaude() {
 // Aba - Leitos e Internações
 function AbaLeitosInternacoes() {
   return (
-    <p>Leitos e Internações</p>
+    <h2>Leitos e Internações</h2>
+  );
+}
+
+
+
+// Aba - Financeiro
+function AbaFinanceiro() {
+  return (
+    <h2>Financeiro</h2>
+  );
+}
+
+
+
+// Aba - Registros
+function AbaRegistros() {
+  return (
+    <h2>Registros</h2>
   );
 }
 
@@ -155,9 +164,11 @@ export function AreaColaboradorAdmin ({ logOff, userName }) {
       >
         {(selectedId === 'home') && <AbaHome />}
         {(selectedId === 'pacientes') && <AbaPacientesAdmin />}
-        {(selectedId === 'atendimentos') && <AbaAtendimentos />}
-        {(selectedId === 'profissionais-de-saúde') && <AbaProfSaude />}
+        {(selectedId === 'relatórios') && <AbaRelatorios />}
+        {(selectedId === 'gestão-de-profissionais') && <AbaGestapProf />}
         {(selectedId === 'leitos-e-internações') && <AbaLeitosInternacoes />}
+        {(selectedId === 'financeiro') && <AbaFinanceiro />}
+        {(selectedId === 'registros') && <AbaRegistros />}
       </MainContent>
     </MainGridDashboard>
   );

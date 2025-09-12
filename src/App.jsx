@@ -81,6 +81,9 @@ function App() {
     })
 
     setIsInvalid(false);
+
+    // Para teste
+    setTestUser('');
   }
 
   return (
