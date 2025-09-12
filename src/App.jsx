@@ -1,9 +1,10 @@
 import { useState, /* useContext, createContext */ } from 'react';
-import './App.css';
 import AcessoUsuario from './components/Login';
 import { AreaColaboradorAdmin, AreaColaboradorProfSaude } from './components/Colaborador';
 import AreaPaciente from './components/Paciente';
 import { testUserAdmin, testUserProf, testUserData, testUserPaciente } from './components/LocalData';
+
+import './App.css';
 
 
 
@@ -34,7 +35,7 @@ function App() {
       // retirar mensagem de campo inválido
       setIsInvalid(false);
 
-      // prosseguir para o dashboard de acordo com o tipo de usuário 
+      // prosseguir para o dashboard de acordo com o subtipo de usuário 
       setLogIn({
         ...logIn,
         userSubType: subType,
@@ -81,8 +82,6 @@ function App() {
     })
 
     setIsInvalid(false);
-
-    // Para teste
     setTestUser('');
   }
 
@@ -105,7 +104,7 @@ function App() {
 
       
 
-      {/* TESTANDO CADA PÁGINA */}
+      {/* TESTE PARA CADA PÁGINA */}
       {/* <AreaPaciente userName={userFullName} logOff={() => resetUser()} /> */}
       {/* <AreaColaboradorProfSaude userName={userFullName} logOff={() => resetUser()} /> */}
       {/* <AreaColaboradorAdmin userName={userFullName} logOff={() => resetUser()} /> */}

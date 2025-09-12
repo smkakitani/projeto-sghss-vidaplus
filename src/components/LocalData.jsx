@@ -238,35 +238,35 @@ export const inputInvalidMessage = {
   telefone: {
     pattern: 'Insira somente números',
     missing: 'Insira o número do seu telefone',
-    short: 'Número incompleto, insira seu DDD'
+    short: 'Número incompleto, no mínimo 10 dígitos'
   },
   cpf: {
     pattern: 'Somente números',
     missing: 'Insira o número do seu CPF',
-    short: 'CPF incompleto'
+    short: 'CPF deve conter 11 dígitos'
   },
   cep: {
     pattern: 'Somente números',
     missing: 'Insira o número do seu CEP',
-    short: 'CEP incompleto'
+    short: 'CEP deve ter 8 dígitos'
   },
   cidade: {
     pattern: 'Utilizar apenas letras',
     missing: 'Insira o nome de sua cidade',
-    short: null
+    short: 'Cidade não deve ter menos de 3 letras'
   },
   bairro: {
     pattern: 'Utilizar apenas letras e/ou números',
     missing: 'Insira o nome de seu bairro',
-    short: null
+    short: 'Mínimo de 2 caracteres'
   },
   logradouro: {
     pattern: 'Utilizar somente letras e/ou números',
     missing: 'Insira o endereço de sua residência',
-    short: null
+    short: 'Mínimo de 3 caracteres'
   },
   numPredial: {
-    pattern: 'Utilizar somente números e/ou letras',
+    pattern: 'Utilizar somente números',
     missing: 'Insira o número de sua residência',
     short: null
   }
@@ -350,7 +350,7 @@ export const inputDadosPessoais = [
     value: '',
     pattern: '[a-zA-ZáéíóúàâêôãõüçÁÉÍÓÚÀÂÊÔÃÕÜÇ\\s\\-]{2,32}',
     maxLength: null,
-    minLength: null,
+    minLength: 3,
     isRequired: true,
   }, {
     id: 7,
@@ -360,7 +360,7 @@ export const inputDadosPessoais = [
     value: '',
     pattern: '[0-9a-zA-ZáéíóúàâêôãõüçÁÉÍÓÚÀÂÊÔÃÕÜÇ\\s\\-]{2,32}',
     maxLength: null,
-    minLength: null,
+    minLength: 2,
     isRequired: true,
   }, {
     id: 8,
@@ -370,7 +370,7 @@ export const inputDadosPessoais = [
     value: '',
     pattern: '[0-9a-zA-ZáéíóúàâêôãõüçÁÉÍÓÚÀÂÊÔÃÕÜÇ\\s\\-]{2,32}',
     maxLength: null,
-    minLength: null,
+    minLength: 3,
     isRequired: true,
   }, {
     id: 9,
@@ -378,10 +378,11 @@ export const inputDadosPessoais = [
     name: 'numPredial',
     title: 'Número:',
     value: '',
-    pattern: '[0-9a-zA-Z\\s\\-]{1,32}',
+    pattern: '[0-9]{1,10}',
     maxLength: null,
-    minLength: null,
+    minLength: 1,
     isRequired: true,
+    inputMode: 'numeric'
   }, {
     id: 10,
     type: 'text',
