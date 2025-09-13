@@ -1,4 +1,4 @@
-import { useState, /* useContext, createContext */ } from 'react';
+import { useState } from 'react';
 import AcessoUsuario from './components/Login';
 import { AreaColaboradorAdmin, AreaColaboradorProfSaude } from './components/Colaborador';
 import AreaPaciente from './components/Paciente';
@@ -26,6 +26,7 @@ function App() {
     const formJson = Object.fromEntries(formData.entries());
     
     // Teste para identificar qual o tipo de colaborador o usuário apresenta | necessário validação no back-end 
+    // Pois o sistema deverá identificar automaticamente se o e-mail de quem está acessando está registrado e se pertence a um colaborador do tipo Administrativo ou Profissional da Saúde
     let subType = '';
     if (logIn.userType === 'colaborador') {
       subType = testUser.loginType;

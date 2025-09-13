@@ -38,7 +38,7 @@ function PainelLogin ({
               className={isInvalid ? 'invalid-input' : ''}
               value={testUser.usuario}
               onChange={handleChange}
-              type='text' id='usuario' name='usuario' maxLength={(userOption === 'paciente') ? '11' : '32'} required />
+              type={(userOption === 'paciente') ? 'text' : 'email'} id='usuario' name='usuario' maxLength={(userOption === 'paciente') ? '11' : '32'} required />
           </div>
           <div>
             <label htmlFor="senha">Senha: </label>
