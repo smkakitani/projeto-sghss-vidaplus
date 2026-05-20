@@ -1,3 +1,11 @@
+<div align="center">
+  <img src="./src/assets/logo_vidaplus_.svg" width="200" align="center">
+  <h3>VidaPlus</h3>
+</div>
+
+<br>
+
+
 # Projeto teórico de Sistema de Gestão Hospitalar e de Serviços de Saúde (SGHSS) - VidaPlus
 
 Sistema teórico desenvolvido com base em um __Estudo de Caso__ de uma instituição hipotética que administra hospitais, clínicas de bairros, laboratórios, etc, e necessita de um sistema de gestão para centralizar diversos procedimentos, como cadastro e atendimento de pacientes, administração hospitalar, segurança e compliance.
@@ -12,20 +20,32 @@ segurança e melhoria na experiência de seus usuários.
 
 Na primeira fase do projeto foram implementados os acessos de usuários com seus respectivos menus:
 
-#### Usuário paciente
+<details>
+
+<summary><b>Usuário paciente</b></summary>
+
 - Meus Dados
 - Consulta
 - Exames
 - Histórico Clínico
 - Sair
 
-#### Usuário profissional da saúde
+</details>
+<br/>
+<details>
+
+<summary><b>Usuário profissional da saúde</b></summary>
+
 - Minha Agenda
 - Pacientes
 - Receitas Digitais
 - Sair
 
-#### Usuário administrador
+</details>
+<br/>
+<details>
+<summary><b>Usuário administrador</b></summary>
+
 - Home
 - Pacientes
 - Leitos e Internações
@@ -35,6 +55,9 @@ Na primeira fase do projeto foram implementados os acessos de usuários com seus
 - Registros
 - Sair
 
+</details>
+<br/>
+
 Também foi implantado a possibilidade de o próprio usuário paciente alterar seus dados, como telefone, e-mail, CEP, etc, contendo as devidas 
 validações de front-end, como retorno de mensagem sobre o erro em que algum 
 campo fica invalidado, auxiliando o usuário em como preencher o respectivo campo 
@@ -42,16 +65,28 @@ corretamente. Também houve a integração de uma API (brasilapi.com.br) que
 preenche automaticamente — Estado, Cidade, Bairro e Logradouro — de acordo 
 com o CEP válido inserido.
 
-## Modelagem e arquitetura
+## :triangular_ruler: Modelagem e arquitetura :straight_ruler:
 
-Para este projeto foi utilizado React, os principais fatores foram: a possibilidade de reúso de componentes, uma vasta 
-comunidade tornando-o amplamente suportado e desenvolvido, não obriga a atender 
-algum Design Pattern específico ou estrutura de projeto, sendo assim oferece aos 
-desenvolvedores mais controle sobre seus códigos. Também foi utilizado a biblioteca 
-de componentes Material UI para auxiliar na criação de alguns componentes mais 
+Para este projeto foi utilizado **React**, os principais fatores foram: 
+- Possibilidade de reúso de componentes
+- Vasta comunidade tornando-o amplamente suportado e desenvolvido
+- Não obriga a atender algum Design Pattern específico ou estrutura de projeto, sendo assim oferece aos desenvolvedores mais controle sobre seus códigos
+
+Também foi utilizado a biblioteca de componentes **Material UI** para auxiliar na criação de alguns componentes mais 
 complexos.
 
-## :hammer_and_wrench: Tecnologias :hammer_and_wrench:
+## :dvd: Como rodar :cd:
 
-- React + Vite
-- Material UI
+Após clonar o repositório, instale as dependências:
+```
+$ npm install
+```
+  
+Então rode o protótipo localmente:
+```
+$ npm run dev
+```
+
+<br>
+
+Ou acesse uma [demo do protótipo.](https://projeto-sghss-vidaplus.netlify.app)
