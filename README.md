@@ -90,3 +90,31 @@ $ npm run dev
 <br>
 
 Ou acesse uma [demo do protótipo.](https://projeto-sghss-vidaplus.netlify.app)
+
+## Imagens do sistema de gestão
+
+**Painel inicial**
+<div align="center">
+  <img src="./img/prototipo_painel_01.png" alt="Painel de acesso do usuário do sistema." width="700"/>
+  <p><i>Painel de acesso do usuário do sistema.</i></p>
+</div>
+
+<br>
+<br>
+
+**Dashboard de usuário paciente**
+<div align="center">
+  <img src="./img/prototipo_dashboard_paciente_02.png" alt="Tela de edição de dados." width="700"/>
+  <p><i>Tela de edição de dados.</i></p>
+</div>
+<br>
+<div align="center">
+  <img src="./img/dashboard_paciente_invalido.png" alt="Tela de edição com campo logradouro inválido." width="400"/>
+  <p><i>Tela de edição com campo "logradouro" inválido.</i></p>
+</div>
+<br>
+<div align="center">
+  <img src="./img/dashboard_paciente_mobile.png" alt="Tela de dashboard de usuário paciente tamanho mobile." width="400"/>
+  <p><i>Dashboard de usuário paciente demonstrando a responsividade da interface de usuário em tamanho de um dispositivo móvel. O layout muda para uma coluna e o menu que antes era ao lado esquerdo, se apresenta acima.
+  </i></p>
+</div>
