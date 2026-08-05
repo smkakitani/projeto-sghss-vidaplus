@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 // React Router
 import { useNavigate } from "react-router";
 // Assets
-import { LogoVidaPlus } from "./GeneralDashboard";
+import { LogoVidaPlus } from "../components/GeneralDashboard";
 // Styles
 import "../styles/Login.css";
 import styled, { keyframes } from "styled-components";
@@ -60,7 +60,7 @@ export default function AcessoUsuario() {
 
   useEffect(() => {
     if (user) {
-      console.log(user);
+      // console.log(user);
       navigate(`/dashboard/${user.role}`, { replace: true });
     }
   });
