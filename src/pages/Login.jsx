@@ -7,11 +7,14 @@ import { LogoVidaPlus } from "../components/GeneralDashboard";
 // Styles
 import "../styles/Login.css";
 import styled, { keyframes } from "styled-components";
-// Hooks/utils
-import useFetch from "../api/mockBackEnd";
+// Utils
 import { useAuth } from "../utils/AuthContext";
-// lib
-import { mockPaciente } from "../utils/lib";
+// Dados
+// import { mockAdmin } from "../data/dadosAdministrativo";
+// import { mockProf } from "../data/dadosProfissional";
+import { mockPaciente } from "../data/dadosPaciente";
+// API
+import useFetch from "../api/useFetch";
 
 // Login
 const fadeIn = keyframes`
@@ -57,10 +60,17 @@ export default function AcessoUsuario() {
     usuario: mockPaciente.usuario,
     senha: mockPaciente.senha,
   });
+  // const [userTest, setUserTest] = useState({
+  //   usuario: mockAdmin.usuario,
+  //   senha: mockAdmin.senha,
+  // });
+  // const [userTest, setUserTest] = useState({
+  //   usuario: mockProf.usuario,
+  //   senha: mockProf.senha,
+  // });
 
   useEffect(() => {
     if (user) {
-      // console.log(user);
       navigate(`/dashboard/${user.role}`, { replace: true });
     }
   });

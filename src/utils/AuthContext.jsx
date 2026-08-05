@@ -2,8 +2,8 @@
 import { createContext, useCallback, useContext, useState } from "react";
 // React Router
 import { useNavigate } from "react-router";
-// lib
-import { userRoles } from "./lib";
+// Dados
+import { userRoles } from "../data/general";
 
 // Context padrão
 const AuthContext = createContext({
@@ -45,7 +45,7 @@ const AuthProvider = ({ children }) => {
     // Retira acesso do usuário
     localStorage.removeItem("user");
 
-    navigate("/login");
+    navigate("/login", { replace: true,  });
   }, [navigate]);
 
   const value = {

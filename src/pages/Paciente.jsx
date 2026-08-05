@@ -3,18 +3,17 @@ import React, { useEffect, useState } from "react";
 // Componentes
 import { MainGridDashboard } from "../components/GeneralDashboard";
 // Dados
-import {
-  menuIconPaciente,
-  testUserData,
-  brazilStates,
-  inputDadosPessoais,
-  inputInvalidMessage,
-  prettifyString,
-} from "../components/LocalData";
+import { menuIconPaciente } from "../data/menuIcons";
+import { brazilStates } from "../data/general";
+import { inputInvalidMessage, inputDadosPessoais } from "../data/general";
+import { testUserData } from "../data/dadosPaciente";
+// utils
+import { useAuth } from "../utils/AuthContext";
+import { prettifyString } from "../utils/lib";
 // Styles
 import "../styles/Paciente.css";
 // Custom hook de API para buscar CEP
-import { useCep } from "../components/Api";
+import { useCep } from "../api/cepApi";
 // MUI
 import AlarmIcon from "@mui/icons-material/Alarm";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
@@ -29,10 +28,10 @@ import {
   RadioGroup,
   Radio,
 } from "@mui/material";
+// Styles
 import styled, { keyframes } from "styled-components";
 // React Router
 import { Outlet } from "react-router";
-import { useAuth } from "../utils/AuthContext";
 
 // Painel principal
 export default function AreaPaciente() {
@@ -84,7 +83,6 @@ function InputDados({
       setIsInvalid(false);
       setErrorMessage("");
 
-      // console.log(ele.name + ' válido');
       if (ele.name === "cep") {
         handleCep(ele.value);
       }
@@ -94,16 +92,10 @@ function InputDados({
 
       if (ele.validity.patternMismatch && !ele.validity.tooShort) {
         setErrorMessage(inputMessageType.pattern);
-
-        // console.log('pattern errado');
       } else if (ele.validity.valueMissing) {
         setErrorMessage(inputMessageType.missing);
-
-        // console.log('campo vazio');
       } else if (ele.validity.tooShort) {
         setErrorMessage(inputMessageType.short);
-
-        // console.log('caractere faltando');
       }
     }
   }

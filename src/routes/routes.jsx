@@ -8,7 +8,22 @@ import AreaPaciente, {
   AbaHistoricoClinico,
   AbaMeusDados,
 } from "../pages/Paciente";
-import { AreaColaboradorProfSaude, AreaColaboradorAdmin } from "../pages/Colaborador";
+import {
+  AbaMinhaAgenda,
+  AbaPacientes,
+  AbaReceitasDigitais,
+  AreaColaboradorProfSaude,
+} from "../pages/Colaborador";
+import {
+  AreaColaboradorAdmin,
+  AbaHome,
+  AbaPacientesAdmin,
+  AbaLeitosInternacoes,
+  AbaRelatorios,
+  AbaGestapProf,
+  AbaFinanceiro,
+  AbaRegistros,
+} from "../pages/Administrativo";
 
 // Routes
 const routes = [
@@ -29,8 +44,30 @@ const routes = [
           { path: "historico-clinico", Component: AbaHistoricoClinico },
         ],
       },
-      { path: "dashboard/profissional", Component: AreaColaboradorProfSaude },
-      { path: "dashboard/administrativo", Component: AreaColaboradorAdmin },
+      {
+        path: "dashboard/profissional",
+        Component: AreaColaboradorProfSaude,
+        children: [
+          { index: true, Component: AbaMinhaAgenda },
+          { path: "minha-agenda", Component: AbaMinhaAgenda },
+          { path: "pacientes", Component: AbaPacientes },
+          { path: "receitas-digitais", Component: AbaReceitasDigitais },
+        ],
+      },
+      {
+        path: "dashboard/administrativo",
+        Component: AreaColaboradorAdmin,
+        children: [
+          { index: true, Component: AbaHome },
+          { path: "home", Component: AbaHome },
+          { path: "pacientes", Component: AbaPacientesAdmin },
+          { path: "leitos-e-internacoes", Component: AbaLeitosInternacoes },
+          { path: "relatorios", Component: AbaRelatorios },
+          { path: "gestao-de-profissionais", Component: AbaGestapProf },
+          { path: "financeiro", Component: AbaFinanceiro },
+          { path: "registros", Component: AbaRegistros },
+        ],
+      },
     ],
   },
 ];

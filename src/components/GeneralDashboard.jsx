@@ -1,4 +1,6 @@
-import { removeAccentPTBR } from "./LocalData";
+// utils
+import { removeAccentPTBR } from "../utils/lib";
+// Assets
 import vidaPlusLogo from "../assets/logo_vidaplus_.svg";
 // Styles
 import "../styles/GeneralDashboard.css";
@@ -102,7 +104,7 @@ const ButtonAnimation = styled.button`
 const StyleNavLink = styled(NavLink)`
   text-decoration: none;
 `;
-export function ItemTab({ tabId, onTabClick, classNameTab, tabIcon, path }) {
+function ItemTab({ tabId, onTabClick, classNameTab, tabIcon, path }) {
   return (
     <li className={removeAccentPTBR(tabId)}>
       <StyleNavLink to={removeAccentPTBR(path)}>
@@ -120,26 +122,7 @@ export function ItemTab({ tabId, onTabClick, classNameTab, tabIcon, path }) {
   );
 }
 
-export function MenuTabList({ children }) {
-  return (
-    <nav>
-      <LogoVidaPlus />
-      <menu>{children}</menu>
-    </nav>
-  );
-}
-
-export function MainContent({ tabId, className, children }) {
-  return (
-    <main>
-      <div key={tabId} className={removeAccentPTBR(className)}>
-        {children}
-      </div>
-    </main>
-  );
-}
-
-export function UserProfile({ userName = "unkown" }) {
+function UserProfile({ userName = "unkown" }) {
   function getLetter(str) {
     return str.charAt(0).toUpperCase();
   }
