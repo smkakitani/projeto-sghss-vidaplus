@@ -93,10 +93,12 @@
 }
 
 /* !important usado para sobrescrever a cor base de TAB */
-.current-tab {
-  background-color: var(--azul-claro-background) !important;
-  color: var(--azul-escuro-1);
-  font-weight: bolder;
+a.active {
+  button {
+    background-color: var(--azul-claro-background) !important;
+    color: var(--azul-escuro-1);
+    font-weight: bolder;
+  }  
 }
 
 main  {
