@@ -1,29 +1,20 @@
 // React
 import React, { useEffect, useState } from "react";
 // Componentes
-import {
-  MainGridDashboard,
-  MenuTabList,
-  ItemTab,
-  MainContent,
-  UserProfile,
-} from "./GeneralDashboard";
+import { MainGridDashboard } from "../components/GeneralDashboard";
 // Dados
 import {
-  menuContentPaciente,
   menuIconPaciente,
   testUserData,
   brazilStates,
   inputDadosPessoais,
   inputInvalidMessage,
   prettifyString,
-} from "./LocalData";
+} from "../components/LocalData";
 // Styles
 import "../styles/Paciente.css";
-
 // Custom hook de API para buscar CEP
-import { useCep } from "./Api";
-
+import { useCep } from "../components/Api";
 // MUI
 import AlarmIcon from "@mui/icons-material/Alarm";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
@@ -39,6 +30,33 @@ import {
   Radio,
 } from "@mui/material";
 import styled, { keyframes } from "styled-components";
+// React Router
+import { Outlet } from "react-router";
+import { useAuth } from "../utils/AuthContext";
+
+// Painel principal
+export default function AreaPaciente() {
+  const { user, onLogout } = useAuth();
+  const menu = ["meus-dados", "consulta", "exames", "histórico-clínico", "sair"];
+
+  async function handleTabs(e) {
+    if (e.currentTarget.value === "sair") {
+      await onLogout();
+    }
+  }
+
+  return (
+    <MainGridDashboard
+      pageName={"pagina-paciente"}
+      tabs={menu}
+      tabsIcon={menuIconPaciente}
+      userName={user?.username}
+      handleTabOnClick={handleTabs}
+    >
+      <Outlet />
+    </MainGridDashboard>
+  );
+}
 
 // Aba - Meus Dados
 function InputDados({
@@ -110,9 +128,7 @@ function InputDados({
         autoComplete="off"
         onInvalid={handleBlur}
       />
-      {isInvalid && (
-        <span className="invalid-message">&#10071; {errorMessage}</span>
-      )}
+      {isInvalid && <span className="invalid-message">&#10071; {errorMessage}</span>}
     </>
   );
 }
@@ -166,11 +182,10 @@ const LabelStyle = styled.label`
   }
   && span:nth-of-type(2),
   input {
-    animation: ${scaleLeft} 1000ms cubic-bezier(0.25, 0.46, 0.45, 0.94) 500ms
-      both;
+    animation: ${scaleLeft} 1000ms cubic-bezier(0.25, 0.46, 0.45, 0.94) 500ms both;
   }
 `;
-function AbaMeusDados() {
+export function AbaMeusDados() {
   const [isEditing, setIsEditing] = useState(false);
   const [userData, setUserData] = useState(testUserData);
   const [inputValues, setInputValues] = useState(userData);
@@ -181,19 +196,9 @@ function AbaMeusDados() {
   const [validCep, setValidCep] = useState(false);
 
   // Inputs divididos em sections: 1-dados pessoais | 2-endereço
-  const arrAddress = [
-    "cidade",
-    "bairro",
-    "logradouro",
-    "numPredial",
-    "complemento",
-  ];
-  const inputSec1 = inputDadosPessoais.filter(
-    (item) => !arrAddress.includes(item.name),
-  );
-  const inputSec2 = inputDadosPessoais.filter((item) =>
-    arrAddress.includes(item.name),
-  );
+  const arrAddress = ["cidade", "bairro", "logradouro", "numPredial", "complemento"];
+  const inputSec1 = inputDadosPessoais.filter((item) => !arrAddress.includes(item.name));
+  const inputSec2 = inputDadosPessoais.filter((item) => arrAddress.includes(item.name));
 
   useEffect(() => {
     if (cep) {
@@ -295,9 +300,7 @@ function AbaMeusDados() {
           minLength={item.minLength}
           isRequired={item.isRequired}
           maxValue={
-            typeof item.currentDate === "function"
-              ? item.currentDate()
-              : undefined
+            typeof item.currentDate === "function" ? item.currentDate() : undefined
           }
           inputMode={item.inputMode}
           readOnly={item.isReadOnly}
@@ -332,9 +335,7 @@ function AbaMeusDados() {
           minLength={item.minLength}
           isRequired={item.isRequired}
           maxValue={
-            typeof item.currentDate === "function"
-              ? item.currentDate()
-              : undefined
+            typeof item.currentDate === "function" ? item.currentDate() : undefined
           }
           inputMode={item.inputMode}
         />
@@ -390,11 +391,7 @@ function AbaMeusDados() {
             </button>
           </>
         ) : (
-          <button
-            type="button"
-            onClick={handleEditData}
-            className="edit-dados-pessoais"
-          >
+          <button type="button" onClick={handleEditData} className="edit-dados-pessoais">
             Editar dados
           </button>
         )}
@@ -411,9 +408,7 @@ function DateTimePanel({ handleAccept }) {
   return (
     <LocalizationProvider
       dateAdapter={AdapterDateFns}
-      localeText={
-        ptBR.components.MuiLocalizationProvider.defaultProps.localeText
-      }
+      localeText={ptBR.components.MuiLocalizationProvider.defaultProps.localeText}
       adapterLocale={ptB}
     >
       <DateTimePicker
@@ -459,12 +454,7 @@ function CardConsulta() {
   );
 }
 
-function AgendarConsulta({
-  appointmentValues,
-  handleValues,
-  handleAgendar,
-  isEspec,
-}) {
+function AgendarConsulta({ appointmentValues, handleValues, handleAgendar, isEspec }) {
   function handleChange(e) {
     const hasCurrent = Object.hasOwn(e, "current");
 
@@ -519,11 +509,7 @@ function AgendarConsulta({
             value={appointmentValues.modConsulta}
             onChange={handleChange}
           >
-            <FormControlLabel
-              value="presencial"
-              control={<Radio />}
-              label="Presencial"
-            />
+            <FormControlLabel value="presencial" control={<Radio />} label="Presencial" />
             <FormControlLabel
               value="teleconsulta"
               control={<Radio />}
@@ -540,7 +526,7 @@ function AgendarConsulta({
   );
 }
 
-function AbaConsulta() {
+export function AbaConsulta() {
   const [isActive, setIsActive] = useState(false);
   const [isEspec, setIsEspec] = useState(false);
   const [appointmentValues, setAppointmentValues] = useState({
@@ -604,7 +590,7 @@ function AbaConsulta() {
 }
 
 // Aba - Exames
-function AbaExames() {
+export function AbaExames() {
   return (
     <>
       <div className="tab-header">
@@ -616,7 +602,7 @@ function AbaExames() {
 }
 
 // Aba - Histórico Clínico
-function AbaHistoricoClinico() {
+export function AbaHistoricoClinico() {
   return (
     <>
       <div className="tab-header">
@@ -624,40 +610,5 @@ function AbaHistoricoClinico() {
       </div>
       <hr />
     </>
-  );
-}
-
-// Painel principal
-export default function AreaPaciente({ logOff, userName }) {
-  const [selectedId, setSelectedId] = useState(menuContentPaciente[0]); // mudando index muda a ABA padrão
-
-  return (
-    <MainGridDashboard pageName={"pagina-paciente"}>
-      <MenuTabList>
-        {menuContentPaciente.map((tab) => (
-          <ItemTab
-            key={tab}
-            tabId={tab}
-            tabIcon={menuIconPaciente[tab]}
-            handleMenuTab={() => {
-              setSelectedId(tab);
-              if (tab === "sair") {
-                logOff();
-              }
-            }}
-            classNameTab={
-              selectedId === tab ? "button-menu current-tab" : "button-menu"
-            }
-          />
-        ))}
-      </MenuTabList>
-      <UserProfile userName={userName} />
-      <MainContent tabId={selectedId} className={selectedId}>
-        {selectedId === "meus-dados" && <AbaMeusDados />}
-        {selectedId === "consulta" && <AbaConsulta />}
-        {selectedId === "exames" && <AbaExames />}
-        {selectedId === "histórico-clínico" && <AbaHistoricoClinico />}
-      </MainContent>
-    </MainGridDashboard>
   );
 }
