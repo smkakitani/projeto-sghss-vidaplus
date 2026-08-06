@@ -100,7 +100,6 @@ export default function AcessoUsuario() {
 
   useEffect(() => {
     if (result) {
-      console.log(result, "usuário acessando deashboard...");
       onLogin(result);
     }
   }, [result, onLogin]);
